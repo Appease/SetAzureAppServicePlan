@@ -1,4 +1,4 @@
-![](https://ci.appveyor.com/api/projects/status/rayv6xsibmqf48e8?svg=true)
+![](https://ci.appveyor.com/api/projects/status/2s5v9ydi7fbo5k0r?svg=true)
 
 ####What is it?
 
