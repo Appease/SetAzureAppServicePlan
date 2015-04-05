@@ -24,7 +24,7 @@ description: a `string` representing the name of the resource group this App Ser
 description: a `string` representing the geographical location of the resource group.
 allowed values: 
 ```PowerShell
-AzureResourceManager\Get-AzureLocation | ?{$_.Name -eq 'Microsoft.Web/serverFarms'} | select LocationsString
+PS C:\> AzureResourceManager\Get-AzureLocation | ?{$_.Name -eq 'Microsoft.Web/serverFarms'} | select LocationsString
 
 LocationsString                                                                                                                                                                             
 ---------------                                                                                                                                                                             
