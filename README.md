@@ -21,7 +21,7 @@ description: a `string` representing the name of the App Service plan.
 description: a `string` representing the name of the resource group this App Service plan will be added to.
 
 #####Location
-description: a `string` representing the geographical location of the resource group.
+description: a `string` representing the geographical location of the resource group.  
 allowed values: 
 ```PowerShell
 PS C:\> AzureResourceManager\Get-AzureLocation | ?{$_.Name -eq 'Microsoft.Web/serverFarms'} | select LocationsString
@@ -33,7 +33,7 @@ Brazil South, East Asia, East US, Japan East, Japan West, North Central US, Nort
 ```
 
 #####Sku
-description: a `string` representing the sku of the App Service plan 
+description: a `string` representing the sku of the App Service plan  
 allowed values: `Free`, `Shared`, `Basic`, `Standard`, `Premium`
 
 #####WorkerSize
@@ -45,7 +45,7 @@ description: an `int` representing the number of worker VMs allocated to the App
 ####What parameters are optional?
 
 #####Tags
-description: a `PSCustomObject[]` representing tags (labels) to associate with the App Service plan
+description: a `PSCustomObject[]` representing tags (labels) to associate with the App Service plan  
 schema:
 ```PowerShell
 @(
