@@ -27,7 +27,6 @@ function Invoke(
 
     [string]
     [ValidateNotNullOrEmpty()]
-    [ValidateSet(Free, Shared, Basic, Standard, Premium)]
     [Parameter(
         Mandatory=$true,
         ValueFromPipelineByPropertyName=$true)]
@@ -47,9 +46,8 @@ function Invoke(
         ValueFromPipelineByPropertyName=$true)]
     $NumberOfWorkers,
 
-    [PSCustomObject]
+    [PSCustomObject[]]
     [Parameter(
-        Mandatory=$true,
         ValueFromPipelineByPropertyName=$true)]
     $Tag
 ){
