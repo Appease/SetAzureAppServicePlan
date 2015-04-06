@@ -54,6 +54,8 @@ function Invoke(
 
     $ApiVersion = '2014-04-01'
     $ResourceType = 'Microsoft.Web/serverFarms'
+    # azure returns location strings with whitespace stripped
+    $WhitespaceStrippedLocation = $Location -replace '\s', ''
 
     # build up property Hashtable from parameters
     $Properties = @{'sku'=$Sku;'workerSize'=$WorkerSize;'numberOfWorkers'=$NumberOfWorkers}
@@ -64,7 +66,7 @@ function Invoke(
         $Tag.PSObject.Properties | %{$TagHashtable[$_.Name]=$_.Value}
     }
 
-    If(!(AzureResourceManager\Get-AzureResource | ?{($_.Name -eq $Name) -and ($_.ResourceGroupName -eq $ResourceGroupName) -and ($_.Location -eq $Location)})){
+    If(!(AzureResourceManager\Get-AzureResource | ?{($_.Name -eq $Name) -and ($_.ResourceGroupName -eq $ResourceGroupName) -and ($_.Location -eq $WhitespaceStrippedLocation)})){
         AzureResourceManager\New-AzureResource `
         -Location $Location `
         -Name $Name `
