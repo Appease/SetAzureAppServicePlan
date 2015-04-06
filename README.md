@@ -37,7 +37,8 @@ description: a `string` representing the sku of the App Service plan
 allowed values: `Free`, `Shared`, `Basic`, `Standard`, `Premium`
 
 #####WorkerSize
-description: a `string` representing the size of each worker VM allocated to the App Service plan
+description: a `string` representing the size of each worker VM allocated to the App Service plan  
+allowed values: `0`, `1`, `2`
 
 #####NumberOfWorkers
 description: an `int` representing the number of worker VMs allocated to the App Service plan
