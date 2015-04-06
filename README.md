@@ -45,16 +45,3 @@ known allowed values: `0`, `1`, `2`
 
 #####NumberOfWorkers
 description: an `int` representing the number of worker VMs allocated to the App Service plan
-
-####What parameters are optional?
-
-#####Tags
-description: a `PSCustomObject[]` representing tags (labels) to associate with the App Service plan  
-schema:
-```PowerShell
-@(
-    [PSCustomObject]@{
-        'YOUR-TAG-KEY'='YOUR-TAG-VALUE'
-    }
-)
-```
