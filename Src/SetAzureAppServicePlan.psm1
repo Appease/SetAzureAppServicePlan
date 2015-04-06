@@ -1,5 +1,6 @@
 # halt immediately on any errors which occur in this module
 $ErrorActionPreference = 'Stop'
+Import-Module AzureResourceManager
 
 function Invoke(
 
@@ -65,8 +66,8 @@ function Invoke(
         $Tag.PSObject.Properties | %{$TagHashtable[$_.Name]=$_.Value}
     }
 
-    If(!(Get-AzureResource | ?{($_.Name -eq $Name) -and ($_.ResourceGroupName -eq $ResourceGroupName) -and ($_.Location -eq $Location)})){
-        New-AzureResource `
+    If(!(AzureResourceManager\Get-AzureResource | ?{($_.Name -eq $Name) -and ($_.ResourceGroupName -eq $ResourceGroupName) -and ($_.Location -eq $Location)})){
+        AzureResourceManager\New-AzureResource `
         -Location $Location `
         -Name $Name `
         -ResourceGroupName $ResourceGroupName `
@@ -77,7 +78,7 @@ function Invoke(
         -Force
     }
     Else{
-        Set-AzureResource `
+        AzureResourceManager\Set-AzureResource `
         -Name $Name `
         -ResourceGroupName $ResourceGroupName `
         -ResourceType $ResourceType `
