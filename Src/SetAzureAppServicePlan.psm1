@@ -1,6 +1,6 @@
 # halt immediately on any errors which occur in this module
 $ErrorActionPreference = 'Stop'
-Import-Module Import-Module 'C:\Program Files (x86)\Microsoft SDKs\Azure\PowerShell\ResourceManager\AzureResourceManager' -Force -RequiredVersion '0.8.8'
+Import-Module 'C:\Program Files (x86)\Microsoft SDKs\Azure\PowerShell\ResourceManager\AzureResourceManager' -Force -RequiredVersion '0.8.8'
 
 function Invoke(
 
