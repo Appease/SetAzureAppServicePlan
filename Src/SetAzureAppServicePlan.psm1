@@ -55,7 +55,7 @@ function Invoke(
     # build up property Hashtable from parameters
     $Properties = @{'sku'=$Sku;'workerSize'=$WorkerSize;'numberOfWorkers'=$NumberOfWorkers}
 
-    If(!(AzureResourceManager\Get-AzureResource | ?{($_.Name -eq $Name) -and ($_.ResourceGroupName -eq $ResourceGroupName) -and ($_.Location -eq $WhitespaceStrippedLocation)})){
+    If(!(AzureResourceManager\Get-AzureResource | ?{($_.Name -eq $Name) -and ($_.ResourceGroupName -eq $ResourceGroupName) -and ($_.Location -eq $WhitespaceStrippedLocation) -and ($_.ResourceType -eq $ResourceType)})){
         AzureResourceManager\New-AzureResource `
         -Location $Location `
         -Name $Name `
