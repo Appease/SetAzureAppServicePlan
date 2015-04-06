@@ -21,7 +21,7 @@ description: a `string` representing the name of the App Service plan.
 description: a `string` representing the name of the resource group this App Service plan will be added to.
 
 #####Location
-description: a `string` representing the geographical location of the resource group.  
+description: a `string` representing the geographical location of the App Service plan.  
 allowed values: 
 ```PowerShell
 PS C:\> AzureResourceManager\Get-AzureLocation |
