@@ -23,14 +23,3 @@ description: a `string` representing the name of the resource group this App Ser
 #####Location
 description: a `string` representing the geographical location of the App Service plan.  
 known allowed values: `Brazil South`, `East Asia`, `East US`, `Japan East`, `Japan West`, `North Central US`, `North Europe`, `South Central US`, `West Europe`, `West US`, `Southeast Asia`, `Central US`, `East US 2`
-
-#####Sku
-description: a `string` representing the sku of the App Service plan  
-known allowed values: `Free`, `Shared`, `Basic`, `Standard`, `Premium`
-
-#####WorkerSize
-description: a `string` representing the size of each worker VM allocated to the App Service plan  
-known allowed values: `0`, `1`, `2`
-
-#####NumberOfWorkers
-description: an `int` representing the number of worker VMs allocated to the App Service plan
