@@ -54,8 +54,6 @@ function Invoke(
 
     $ApiVersion = '2014-04-01'
     $ResourceType = 'Microsoft.Web/serverFarms'
-    # azure returns location strings with whitespace stripped
-    $WhitespaceStrippedLocation = $Location -replace '\s', ''
 
     # build up property Hashtable from parameters
     $Properties = @{'sku'=$Sku;'workerSize'=$WorkerSize;'numberOfWorkers'=$NumberOfWorkers}
@@ -66,7 +64,13 @@ function Invoke(
         $Tag.PSObject.Properties | %{$TagHashtable[$_.Name]=$_.Value}
     }
 
-    If(!(AzureResourceManager\Get-AzureResource | ?{($_.Name -eq $Name) -and ($_.ResourceGroupName -eq $ResourceGroupName) -and ($_.Location -eq $WhitespaceStrippedLocation)})){
+    # Azure uniquely identifies an App Service plan by 'ResourceType', 'ResourceGroupName', 'Name'.
+    # If there's a resource with properties matching these then the resource requested
+    # to be set already exists.
+    $ExistingAzureAppServicePlan = AzureResourceManager\Get-AzureResource -ResourceType $ResourceType -ResourceGroupName $ResourceGroupName| ?{$_.Name -eq $Name}
+
+    # handle new
+    If(!$ExistingAzureAppServicePlan){
         AzureResourceManager\New-AzureResource `
         -Location $Location `
         -Name $Name `
@@ -77,7 +81,15 @@ function Invoke(
         -PropertyObject $Properties `
         -Force
     }
+    # handle existing
     Else{
+    
+        # azure returns location strings with whitespace stripped
+        $WhitespaceStrippedLocation = $Location -replace '\s', ''
+        if($ExistingAzureAppServicePlan.Location -ne $WhitespaceStrippedLocation){            
+            throw "Changing an App Service plan location is (currently) unsupported"
+        }
+
         AzureResourceManager\Set-AzureResource `
         -Name $Name `
         -ResourceGroupName $ResourceGroupName `
