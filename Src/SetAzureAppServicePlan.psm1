@@ -23,35 +23,11 @@ function Invoke(
     [Parameter(
         Mandatory=$true,
         ValueFromPipelineByPropertyName=$true)]
-    $Location,
-
-    [string]
-    [ValidateNotNullOrEmpty()]
-    [Parameter(
-        Mandatory=$true,
-        ValueFromPipelineByPropertyName=$true)]
-    $Sku,
-
-    [string]
-    [ValidateNotNullOrEmpty()]
-    [Parameter(
-        Mandatory=$true,
-        ValueFromPipelineByPropertyName=$true)]
-    $WorkerSize,
-
-    [string]
-    [ValidateNotNullOrEmpty()]
-    [Parameter(
-        Mandatory=$true,
-        ValueFromPipelineByPropertyName=$true)]
-    $NumberOfWorkers
+    $Location
 ){
 
     $ApiVersion = '2014-04-01'
     $ResourceType = 'Microsoft.Web/serverFarms'
-
-    # build up property Hashtable from parameters
-    $Properties = @{'sku'=$Sku;'workerSize'=$WorkerSize;'numberOfWorkers'=$NumberOfWorkers}
 
     # Azure uniquely identifies an App Service plan by 'ResourceType', 'ResourceGroupName', 'Name'.
     # If there's a resource with properties matching these then the resource requested
@@ -66,7 +42,7 @@ function Invoke(
         -ResourceGroupName $ResourceGroupName `
         -ResourceType $ResourceType `
         -ApiVersion $ApiVersion `
-        -PropertyObject $Properties `
+        -PropertyObject @{} `
         -Force
     }
     # handle existing
@@ -83,7 +59,7 @@ function Invoke(
         -ResourceGroupName $ResourceGroupName `
         -ResourceType $ResourceType `
         -ApiVersion $ApiVersion `
-        -PropertyObject $Properties
+        -PropertyObject @{}
     }
 }
 
